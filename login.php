@@ -1,13 +1,15 @@
 <?php 
+session_start();
 include('index.php');
 if($_POST['submit']){
 $name=$_POST['name'];
+$_SESSION["name"]=$name;
 $query="insert into `name` (`username`) values ('$name')";
 $res=mysqli_query($connection, $query);
 
 
 if ($res){
-    echo "entered data sucessfully!";
+    header('location: commentapp.php');
 
 }
 else{
@@ -26,7 +28,7 @@ else{
 <body>
     <form action="login.php" method="post"> 
     <input type="text" name="name" placeholder="enter name">
-    <input type="submit" name="submit" >
+    <input type="submit" name="submit" value="submit">
     </form>
 
 </body>
