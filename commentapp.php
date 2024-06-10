@@ -1,9 +1,20 @@
 <?php  
+session_start();
 include("index.php");
 
 if($_POST['submit']){
-    $comment=$_POST['comment'];
-    
+    $cmt=$_POST['comment'];
+    $txt=$_SESSION['name'];
+
+    $query="insert into `commentapp` (`cmt`) values ('$cmt written by $txt' )";
+    $res=mysqli_query($connection,$query);
+    if($res){
+        echo 'data persisted sucessfully!';
+    }
+    else{
+        die( 'failed to insert your data');
+    }
+
 }
 
 
@@ -19,7 +30,7 @@ if($_POST['submit']){
         body{
             box-sizing: border-box;
         }
-        form input{
+        form #comment{
             width: 500;
             height: 500px;
             margin: auto;
@@ -36,7 +47,7 @@ if($_POST['submit']){
 <body>
     <form action="commentapp.php" method="post">
 
-    <input type="text" name="comment" placeholder="enter your comment" />
+    <input id='comment' type="text" name="comment" placeholder="enter your comment" />
         <input type="submit" name="submit" value="submit"/> 
     
     </form>
