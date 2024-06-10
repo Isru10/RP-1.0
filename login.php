@@ -5,6 +5,7 @@ $name=$_POST['name'];
 $query="insert into `name` (`username`) values ('$name')";
 $res=mysqli_query($connection, $query);
 
+
 if ($res){
     echo "entered data sucessfully!";
 
